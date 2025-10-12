@@ -34,6 +34,7 @@ class Hostel(models.Model):
 
                                  digits="Rating Value"  # uses the presision defined in xml
                                  )
+    category_id = fields.Many2one('hostel.category')
 
 
     @api.depends('hostel_code')

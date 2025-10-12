@@ -52,6 +52,7 @@
                                 <field name="email" widget="email" context="{'gravatar_image': True}"/>
                             </group>
                             <group>
+                                <field name="category_id"/>
                                 <field name="hostel_floor"/>
                                 <field name="active"/>
                                 <field name="type"/>
