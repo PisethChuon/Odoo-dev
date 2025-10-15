@@ -20,7 +20,7 @@ class Hostel(models.Model):
     phone = fields.Char('Phone', required=True)
     mobile = fields.Char('Mobile', required=True)
     email = fields.Char('Email')
-    hostel_floor = fields.Integer('Total Floor')
+    hostel_floors = fields.Integer('Total Floor')
     image = fields.Binary('Hostel Image')
     active = fields.Boolean('Active', default=True, help="Activate/Deactivate hostel record")
     type = fields.Selection(
