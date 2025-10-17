@@ -1,6 +1,5 @@
 from odoo import fields, models
 
-
 class HostelAmenities(models.Model):
     _name = "hostel.amenities"
     _description = "Hostel Amenities"
