@@ -19,15 +19,33 @@
             <field name="arch" type="xml">
                 <form string="Room">
                     <sheet>
-                        <group col="4" name="main">
-                            <field name="name"/>
-                            <field name="room_no"/>
-                            <field name="floor_no"/>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="room_no"/>
+                                <field name="hostel_id" required="1"/>
+                                <field name="floor_no"/>
+                                <!--<field name="active"/> This view is for active rooms only (inheritance from active.base) -->
+
+
+                            </group>
+                            <group>
+                                <field name="student_per_room"/>
+                                <field name="availability"/>
+                                <field name="rent_amount"/>
+                                <field name="currency_id"/>
+                            </group>
                         </group>
-                        <group col="4">
-                            <field name="rent_amount"/>
-                            <field name="currency_id"/>
-                        </group>
+                        <notebook>
+                            <page name="room_studnets" string="Studnets">
+                                <field name="student_ids"/>
+                            </page>
+                            <page name="hostel_amenities" string="Room Amenities">
+                                <group>
+                                    <field name="hostel_amenities_ids" widget="many2many_tags"/>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>
