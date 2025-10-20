@@ -1,7 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store
+
+# Virtual env
 venv-odoo-17.0/
 .env
-*__pycache__/
-*.pyc
-.DS_Store
+
+# Node & misc
 node_modules/
 *.log
