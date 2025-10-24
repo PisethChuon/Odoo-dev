@@ -1,34 +1,24 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Basic_Server_Side",
-
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
-
+    'name': "My Hostel",  # Module title
+    'summary': "Manage Hostel easily",  # Module subtitle phrase
     'description': """
-Long description of module's purpose
-    """,
-
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/15.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
-    'category': 'Uncategorized',
-    'version': '0.1',
-
-    # any module necessary for this one to work correctly
-    'depends': ['base'],
-
-    # always loaded
+Manage Library
+==============
+Description related to Hostel.
+    """,  # Supports reStructuredText(RST) format
+    "author": "Serpent Consulting Services Pvt. Ltd.",
+    "category": "Tools",
+    "website": "http://www.serpentcs.com",
+    "depends": ['base'],
+    "license": "AGPL-3",
     'data': [
-        # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'security/groups.xml',
+        'security/ir.model.access.csv',
+        'views/hostel_room.xml',
     ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
+    # This demo data files will be loaded if db initialize with demo data (commented becaues file is not added in this example)
+    # 'demo': [
+    #     'demo.xml'
+    # ],
 }
-
