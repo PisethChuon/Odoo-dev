@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
-
+from odoo.addons.test_impex.tests.test_load import message
+from odoo.exceptions import UserError
+from odoo.tools.translate import _
 
 class HostelRoom(models.Model):
 
@@ -31,7 +33,8 @@ class HostelRoom(models.Model):
             if room.is_allowed_transition(room.state, new_state):
                 room.state = new_state
             else:
-                continue
+                message = _('Moving from %s to %s is not allowed') % (room.state, new_state)
+                raise UserError(message)
 
     def make_available(self):
         self.change_state('available')
