@@ -2,9 +2,9 @@
   <data>
     <!-- explicit list view definition -->
 <!--
-    <record model="ir.ui.view" id="basic__server__side.list">
+    <record model="ir.ui.view" id="basic_server_side.list">
       <field name="name">Basic_Server_Side list</field>
-      <field name="model">basic__server__side.basic__server__side</field>
+      <field name="model">basic_server_side.basic_server_side</field>
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
@@ -17,16 +17,16 @@
 
     <!-- actions opening views on models -->
 <!--
-    <record model="ir.actions.act_window" id="basic__server__side.action_window">
+    <record model="ir.actions.act_window" id="basic_server_side.action_window">
       <field name="name">Basic_Server_Side window</field>
-      <field name="res_model">basic__server__side.basic__server__side</field>
+      <field name="res_model">basic_server_side.basic_server_side</field>
       <field name="view_mode">tree,form</field>
     </record>
 -->
 
     <!-- server action to the one above -->
 <!--
-    <record model="ir.actions.server" id="basic__server__side.action_server">
+    <record model="ir.actions.server" id="basic_server_side.action_server">
       <field name="name">Basic_Server_Side server</field>
       <field name="model_id" ref="model_basic__server__side_basic__server__side"/>
       <field name="state">code</field>
@@ -42,19 +42,19 @@
 
     <!-- Top menu item -->
 <!--
-    <menuitem name="Basic_Server_Side" id="basic__server__side.menu_root"/>
+    <menuitem name="Basic_Server_Side" id="basic_server_side.menu_root"/>
 -->
     <!-- menu categories -->
 <!--
-    <menuitem name="Menu 1" id="basic__server__side.menu_1" parent="basic__server__side.menu_root"/>
-    <menuitem name="Menu 2" id="basic__server__side.menu_2" parent="basic__server__side.menu_root"/>
+    <menuitem name="Menu 1" id="basic_server_side.menu_1" parent="basic_server_side.menu_root"/>
+    <menuitem name="Menu 2" id="basic_server_side.menu_2" parent="basic_server_side.menu_root"/>
 -->
     <!-- actions -->
 <!--
-    <menuitem name="List" id="basic__server__side.menu_1_list" parent="basic__server__side.menu_1"
-              action="basic__server__side.action_window"/>
-    <menuitem name="Server to list" id="basic__server__side" parent="basic__server__side.menu_2"
-              action="basic__server__side.action_server"/>
+    <menuitem name="List" id="basic_server_side.menu_1_list" parent="basic_server_side.menu_1"
+              action="basic_server_side.action_window"/>
+    <menuitem name="Server to list" id="basic_server_side" parent="basic_server_side.menu_2"
+              action="basic_server_side.action_server"/>
 -->
   </data>
 </odoo>
