@@ -3,7 +3,7 @@
     <!-- explicit list view definition -->
 <!--
     <record model="ir.ui.view" id="basic_server_side.list">
-      <field name="name">Basic_Server_Side list</field>
+      <field name="name">basic_server_side list</field>
       <field name="model">basic_server_side.basic_server_side</field>
       <field name="arch" type="xml">
         <tree>
@@ -18,7 +18,7 @@
     <!-- actions opening views on models -->
 <!--
     <record model="ir.actions.act_window" id="basic_server_side.action_window">
-      <field name="name">Basic_Server_Side window</field>
+      <field name="name">basic_server_side window</field>
       <field name="res_model">basic_server_side.basic_server_side</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -27,8 +27,8 @@
     <!-- server action to the one above -->
 <!--
     <record model="ir.actions.server" id="basic_server_side.action_server">
-      <field name="name">Basic_Server_Side server</field>
-      <field name="model_id" ref="model_basic__server__side_basic__server__side"/>
+      <field name="name">basic_server_side server</field>
+      <field name="model_id" ref="model_basic_server_side_basic_server_side"/>
       <field name="state">code</field>
       <field name="code">
         action = {
@@ -42,7 +42,7 @@
 
     <!-- Top menu item -->
 <!--
-    <menuitem name="Basic_Server_Side" id="basic_server_side.menu_root"/>
+    <menuitem name="basic_server_side" id="basic_server_side.menu_root"/>
 -->
     <!-- menu categories -->
 <!--
