@@ -8,7 +8,7 @@ Manage Library
 Description related to Hostel.
     """,  # Supports reStructuredText(RST) format
     "author": "Serpent Consulting Services Pvt. Ltd.",
-    "category": "Tools",
+    "category": "Productivity",
     "website": "http://www.serpentcs.com",
     "depends": ['base'],
     "license": "AGPL-3",
@@ -21,4 +21,6 @@ Description related to Hostel.
     # 'demo': [
     #     'demo.xml'
     # ],
+    'installable': True,
+    'application': True,
 }
