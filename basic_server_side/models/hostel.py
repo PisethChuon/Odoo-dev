@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
-from odoo.addons.test_impex.tests.test_load import message
 from odoo.exceptions import UserError
 from odoo.tools.translate import _
 
@@ -35,10 +34,27 @@ class HostelRoom(models.Model):
             else:
                 message = _('Moving from %s to %s is not allowed') % (room.state, new_state)
                 raise UserError(message)
-
+    # Method to change state to 'draft'
     def make_available(self):
         self.change_state('available')
-
+    # Method to change state to 'closed'
     def make_closed(self):
         self.change_state('closed')
 
+    def log_all_room_members(self):
+        hostel_room_obj = self.env['hostel.room.member']    # This is an empty recordset of model 'hostel.room.member'
+        all_members = hostel_room_obj.search([])
+        print('all_members', all_members)
+        return True
+
+class HostelRoomNumber(models.Model):
+    _name = 'hostel.room.member'
+    # Use delegation inheritance so each hostel.room.member delegates to a res.partner record
+    _inherits = {'res.partner': 'partner_id'}
+    _description = "Hostel Room Number Inherited from res.partner"
+
+    partner_id = fields.Many2one('res.partner', ondelete='cascade')
+    date_start = fields.Date('Member Since')
+    date_end = fields.Date('Termination Date')
+    member_number = fields.Char()
+    date_of_birth = fields.Date('Date of Birth')
