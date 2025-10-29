@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models
 from odoo.exceptions import UserError
-from odoo.tools.translate import _
+from odoo.tools.translate import _, _logger
+
 
 class HostelRoom(models.Model):
 
@@ -46,7 +47,7 @@ class HostelRoom(models.Model):
         all_members = hostel_room_obj.search([])
         print('all_members', all_members)
         return True
-
+    # Method to create categories with child categories
     def create_categories(self):
         categ1 = {
             'name': 'Single Room',
@@ -63,6 +64,25 @@ class HostelRoom(models.Model):
         }
         record = self.env['hostel.room.category'].create(parent_category_val)
         return True
+
+    # Method to update room number
+    def update_room_no(self):
+        self.ensure_one()
+        self.room_no = 'RM002'
+
+    def find_room(self):
+        domain = [
+            '|',
+                '&', ('name', 'ilike', 'Room Name'),
+                     ('category_id.name', '=', 'Category Name'),
+                '&', ('name', 'ilike', 'Another Room Name'),
+                     ('category_id.name', '=', 'Another Category Name')
+        ]
+        rooms = self.search(domain)
+        _logger.info('Room found: %s', rooms)
+        return True
+
+
 
 class HostelRoomNumber(models.Model):
     _name = 'hostel.room.member'
