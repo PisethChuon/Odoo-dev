@@ -47,6 +47,23 @@ class HostelRoom(models.Model):
         print('all_members', all_members)
         return True
 
+    def create_categories(self):
+        categ1 = {
+            'name': 'Single Room',
+            'description': 'Single Room Category'
+        }
+        categ2 = {
+            'name': 'Double Room',
+            'description': 'Double Room Category',
+        }
+        parent_category_val = {
+            'name': 'Deluxe Room',
+            'description': 'Deluxe Room Category',
+            'child_ids': [(0, 0, categ1), (0, 0, categ2)]
+        }
+        record = self.env['hostel.room.category'].create(parent_category_val)
+        return True
+
 class HostelRoomNumber(models.Model):
     _name = 'hostel.room.member'
     # Use delegation inheritance so each hostel.room.member delegates to a res.partner record
