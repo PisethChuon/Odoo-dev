@@ -101,6 +101,16 @@ class HostelRoom(models.Model):
     def get_member_names(self, all_rooms):
         return all_rooms.mapped('member_ids.name')
 
+    # Method to sort rooms by rating
+    def sort_room(self):
+        all_rooms = self.search([])
+        rooms_sorted = self.sort_rooms_rating(all_rooms)
+        _logger.info('Sorted Rooms found: %s', all_rooms)
+        _logger.info('Sorted Rooms Rating: %s', rooms_sorted)
+
+    @api.model
+    def sort_rooms_rating(self, all_rooms):
+        return all_rooms.sorted(key='room_rating')
 
 
 class HostelRoomNumber(models.Model):
