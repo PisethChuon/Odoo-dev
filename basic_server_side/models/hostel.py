@@ -81,7 +81,7 @@ class HostelRoom(models.Model):
         rooms = self.search(domain)
         _logger.info('Room found: %s', rooms)
         return True
-
+    # Method to filter rooms with multiple members
     def filter_members(self):
         all_rooms = self.search([])
         filtered_rooms = self.rooms_with_multiple_members(all_rooms)
@@ -90,6 +90,16 @@ class HostelRoom(models.Model):
     @api.model
     def rooms_with_multiple_members(self, all_rooms):
         return all_rooms.filtered(lambda b: len(b.member_ids) > 1)
+
+    # Method to map room members' names
+    def mapped_rooms(self):
+        all_rooms = self.search([])
+        room_authors = self.get_member_names(all_rooms)
+        _logger.info('Mapped Rooms found: %s', room_authors)
+
+    @api.model
+    def get_member_names(self, all_rooms):
+        return all_rooms.mapped('member_ids.name')
 
 
 
