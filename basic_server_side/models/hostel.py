@@ -82,6 +82,15 @@ class HostelRoom(models.Model):
         _logger.info('Room found: %s', rooms)
         return True
 
+    def filter_members(self):
+        all_rooms = self.search([])
+        filtered_rooms = self.rooms_with_multiple_members(all_rooms)
+        _logger.info('Filtered Rooms found: %s', filtered_rooms)
+
+    @api.model
+    def rooms_with_multiple_members(self, all_rooms):
+        return all_rooms.filtered(lambda b: len(b.member_ids) > 1)
+
 
 
 class HostelRoomNumber(models.Model):
