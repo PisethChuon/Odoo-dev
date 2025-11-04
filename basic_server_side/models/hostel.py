@@ -106,7 +106,7 @@ class HostelRoom(models.Model):
         all_rooms = self.search([])
         rooms_sorted = self.sort_rooms_rating(all_rooms)
         _logger.info('Sorted Rooms found: %s', all_rooms)
-        # _logger.info('Sorted Rooms Rating: %s', rooms_sorted)
+        _logger.info('Sorted Rooms Rating: %s', rooms_sorted)
 
     @api.model
     def sort_rooms_rating(self, all_rooms):
