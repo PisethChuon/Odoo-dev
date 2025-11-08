@@ -14,6 +14,9 @@ class HostelRoom(models.Model):
                              help="Enter more information")
     description = fields.Html('Description')
     room_rating = fields.Float('Hostel Average Rating', digits=(14, 4))
+    member_ids = fields.Many2one('hostel.room.member', string='Members')
+    category_id = fields.Many2one('hostel.room.category', string='Category')
+    cost_price = fields.Float('Room Cost Price')
     previous_room_id = fields.Many2one('hostel.room', string='Previous Room')
     state = fields.Selection([
         ('draft', 'Unavailable'),
@@ -157,9 +160,25 @@ class HostelRoom(models.Model):
         _logger.info('Sorted Rooms found: %s', all_rooms)
         _logger.info('Sorted Rooms Rating: %s', rooms_sorted)
 
+    # Api method to sort rooms by rating
     @api.model
     def sort_rooms_rating(self, all_rooms):
         return all_rooms.sorted(key='room_rating')
+
+    def grouped_data(self):
+        data = self._get_average_cost()
+        _logger.info('Average Cost: %s', data)
+
+    @api.model
+    def _get_average_cost(self):
+        grouped_result = self.read_group(
+            ['cost_price', '!=', False], # Domain
+            ['category_id', 'cost_price:avg'], # Fields to read
+            ['category_id'] # Group by
+        )
+        return grouped_result
+
+
 
 
 class HostelRoomNumber(models.Model):
