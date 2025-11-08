@@ -27,9 +27,11 @@
                     <group>
                         <field name="name"/>
                         <field name="room_no"/>
+                        <field name="previous_room_id"/>
                     </group>
                     <group>
                         <field name="description"/>
+                        <field name="remarks"/>
                     </group>
                 </group>
             </form>
