@@ -172,13 +172,11 @@ class HostelRoom(models.Model):
     @api.model
     def _get_average_cost(self):
         grouped_result = self.read_group(
-            ['cost_price', '!=', False], # Domain
-            ['category_id', 'cost_price:avg'], # Fields to read
-            ['category_id'] # Group by
+            ['cost_price', '!=', False],  # Domain
+            ['category_id', 'cost_price:avg'],  # Fields to read
+            ['category_id']  # Group by
         )
         return grouped_result
-
-
 
 
 class HostelRoomNumber(models.Model):
