@@ -5,21 +5,40 @@ from odoo.tools.translate import _, _logger
 
 
 class HostelRoom(models.Model):
-
     _name = 'hostel.room'
     _description = "Information about hostel Room"
 
     name = fields.Char(string="Hostel Room Name", required=True)
     room_no = fields.Char(string="Room Number", required=True)
     other_info = fields.Text("Other Information",
-        help="Enter more information")
+                             help="Enter more information")
     description = fields.Html('Description')
     room_rating = fields.Float('Hostel Average Rating', digits=(14, 4))
+    previous_room_id = fields.Many2one('hostel.room', string='Previous Room')
     state = fields.Selection([
         ('draft', 'Unavailable'),
         ('available', 'Available'),
         ('closed', 'Closed')],
         'State', default="draft")
+    remarks = fields.Text('Remarks')
+
+    @api.model
+    def create(self, values):
+        if not self.user_has_groups('local-addons.group_hostel_manager'):
+            values.get('remarks')
+            if values.get('remarks'):
+                raise UserError(
+                    'You are not allowed to set remarks field.'
+                )
+        return super(HostelRoom, self).create(values)
+
+    def write(self, values):
+        if not self.user_has_groups('local-addons.group_hostel_manager'):
+            if values.get('remarks'):
+                raise UserError(
+                    'You are not allowed to modify remarks field.'
+                )
+        return super(HostelRoom, self).write(values)
 
     @api.model
     def is_allowed_transition(self, old_state, new_state):
@@ -35,18 +54,47 @@ class HostelRoom(models.Model):
             else:
                 message = _('Moving from %s to %s is not allowed') % (room.state, new_state)
                 raise UserError(message)
+
     # Method to change state to 'draft'
     def make_available(self):
         self.change_state('available')
+
     # Method to change state to 'closed'
     def make_closed(self):
         self.change_state('closed')
 
+    #  Makes room records display more informatively by showing who lives in each room
+    def name_get(self):
+        result = []
+        for room in self:
+            members = room.member_ids.mapped('name')
+            name = '%s (%s)' % (room.name, ', '.join(members))
+            result.append((room.id, name))
+        return result
+
+    # Makes it easier to find rooms by allowing searches across room names
+    @api.model
+    def _name_search(self, name='', domain=None, operator='ilike', limit=100, order=None):
+        domain = domain or []
+
+        if name:
+            name_domain = [
+                '|', '|',
+                ('name', operator, name),
+                ('room_no', operator, name),
+                ('member_ids.name', operator, name)
+            ]
+            domain = name_domain + domain
+
+        # Search and return IDs
+        return self._search(domain, limit=limit, order=order)
+
     def log_all_room_members(self):
-        hostel_room_obj = self.env['hostel.room.member']    # This is an empty recordset of model 'hostel.room.member'
+        hostel_room_obj = self.env['hostel.room.member']  # This is an empty recordset of model 'hostel.room.member'
         all_members = hostel_room_obj.search([])
         print('all_members', all_members)
         return True
+
     # Method to create categories with child categories
     def create_categories(self):
         categ1 = {
@@ -73,14 +121,15 @@ class HostelRoom(models.Model):
     def find_room(self):
         domain = [
             '|',
-                '&', ('name', 'ilike', 'Room Name'),
-                     ('category_id.name', '=', 'Category Name'),
-                '&', ('name', 'ilike', 'Another Room Name'),
-                     ('category_id.name', '=', 'Another Category Name')
+            '&', ('name', 'ilike', 'Room Name'),
+            ('category_id.name', '=', 'Category Name'),
+            '&', ('name', 'ilike', 'Another Room Name'),
+            ('category_id.name', '=', 'Another Category Name')
         ]
         rooms = self.search(domain)
         _logger.info('Room found: %s', rooms)
         return True
+
     # Method to filter rooms with multiple members
     def filter_members(self):
         all_rooms = self.search([])
