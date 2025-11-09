@@ -19,7 +19,8 @@ class HostelRoom(models.Model):
     def _compute_check_availability(self):
         """Method to check room availability"""
         for rec in self:
-            rec.availability = rec.student_per_room - len(rec.student_ids.ids)
+            student_count = len(rec.student_ids) if rec.student_ids else 0
+            rec.availability = rec.student_per_room - student_count
 
     name = fields.Char(string="Room Name", required=True)
     room_no = fields.Char("Room No.", required=True)
@@ -40,6 +41,14 @@ class HostelRoom(models.Model):
 
     _sql_constraints = [
         ("room_no_unique", "unique(room_no)", "Room number must be unique!")]
+
+    def write(self, vals):
+        """Override write to recompute student hostel_id when room hostel_id changes"""
+        result = super(HostelRoom, self).write(vals)
+        if 'hostel_id' in vals and self.student_ids:
+            # Trigger recomputation of hostel_id on all students in this room
+            self.student_ids._compute_hostel_id()
+        return result
 
     @api.constrains("rent_amount")
     def _check_rent_amount(self):
