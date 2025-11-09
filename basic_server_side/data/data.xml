@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo noupdate="1">
 
     <!--Point Record on Other Model-->
     <record id="res_partner_packt" model="res.partner">
@@ -9,10 +9,10 @@
     </record>
 
     <!--Create a New Record in Current Model-->
-    <record id="hostel_room_1" model="hostel.room">
-        <field name="name">Hostel Room 01</field>
-        <field name="room_no">ROOM-01</field>
-        <field name="student_per_room">2</field>
-    </record>
+<!--    <record id="hostel_room_1" model="hostel.room">-->
+<!--        <field name="name">Hostel Room 01</field>-->
+<!--        <field name="room_no">ROOM-01</field>-->
+<!--        <field name="student_per_room">2</field>-->
+<!--    </record>-->
 
 </odoo>
