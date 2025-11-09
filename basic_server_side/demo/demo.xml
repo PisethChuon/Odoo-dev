@@ -1,30 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <odoo>
-    <data>
-<!--
-          <record id="object0" model="basic_server_side.basic_server_side">
-            <field name="name">Object 0</field>
-            <field name="value">0</field>
-          </record>
+    <record id="base.main_company" model="res.company">
+        <field name="name">Packt Publishing</field>
+    </record>
 
-          <record id="object1" model="basic_server_side.basic_server_side">
-            <field name="name">Object 1</field>
-            <field name="value">10</field>
-          </record>
+    <record id="author_hda" model="res.partner">
+        <field name="name">Husen Daudi</field>
+    </record>
 
-          <record id="object2" model="basic_server_side.basic_server_side">
-            <field name="name">Object 2</field>
-            <field name="value">20</field>
-          </record>
+    <record id="author_jvo" model="res.partner">
+        <field name="name">Jay Vora</field>
+    </record>
 
-          <record id="object3" model="basic_server_side.basic_server_side">
-            <field name="name">Object 3</field>
-            <field name="value">30</field>
-          </record>
+    <record id="author_vb" model="res.partner">
+        <field name="name">Vacha Bhatt</field>
+    </record>
 
-          <record id="object4" model="basic_server_side.basic_server_side">
-            <field name="name">Object 4</field>
-            <field name="value">40</field>
-          </record>
--->
-    </data>
+    <record id="author_jb" model="res.partner">
+        <field name="name">John Brunn</field>
+    </record>
+
+    <record>
+        <field name="name">Hostel Room 01</field>
+        <field name="room_no">HR001</field>
+        <field name="member_ids" eval="[(6, 0, [ref('author_hda'),ref('author_jvo'),
+                                ref('author_vb'),
+                                ref('author_jb')])]"/>
+    </record>
 </odoo>
