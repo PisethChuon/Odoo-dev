@@ -2,8 +2,10 @@
 <odoo>
 
     <!--Point Record on Other Model-->
-    <record id="base.main_company" model="res.company">
+    <record id="res_partner_packt" model="res.partner">
         <field name="name">Packt publishing</field>
+        <field name="city">Birmingham</field>
+        <field name="country_id" ref="base.uk"/>
     </record>
 
     <!--Create a New Record in Current Model-->
