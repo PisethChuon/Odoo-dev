@@ -20,4 +20,7 @@ Description related to Hostel.
         'views/hostel_room.xml',
         'views/hostel_room_category_view.xml'
     ],
+    'demo': [
+        'demo/demo.xml',
+    ],
 }
