@@ -2,10 +2,6 @@
 from odoo import fields
 from datetime import date
 
-# NOTE: This is just for demo purpose
-# This function invoked only if system already have 17.0.0 version installed
-
-
 def migrate(cr, version):
     cr.execute('SELECT id, allocation_date_char FROM hostel_room')
     for record_id, old_date in cr.fetchall():
