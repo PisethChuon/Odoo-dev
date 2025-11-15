@@ -11,7 +11,7 @@ Description related to Hostel.
     "author": "Serpent Consulting Services Pvt. Ltd.",
     "category": "Tools",
     "website": "http://www.serpentcs.com",
-    "depends": ['base', 'my_hostel'],
+    "depends": ['base'],
     "license": "AGPL-3",
     'data': [
         'data/data.xml',

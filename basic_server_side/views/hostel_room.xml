@@ -28,6 +28,7 @@
                         <field name="name"/>
                         <field name="room_no"/>
                         <field name="previous_room_id"/>
+                        <field name="allocation_date"/>
                     </group>
                     <group>
                         <field name="description"/>

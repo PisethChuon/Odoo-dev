@@ -5,10 +5,13 @@ from odoo.tools.translate import _, _logger
 
 
 class HostelRoom(models.Model):
-    _inherit = 'hostel.room'
+    _name = 'hostel.room'
     _description = "Information about hostel Room"
 
     # Additional fields specific to basic_server_side
+    name = fields.Char(string="Hostel Name", required=True)
+    room_no = fields.Char(string="Room Number", required=True)
+    allocation_date = fields.Date(string="Allocation Date")
     other_info = fields.Text("Other Information",
                              help="Enter more information")
     description = fields.Html('Description')
@@ -40,9 +43,7 @@ class HostelRoom(models.Model):
                 raise UserError(
                     'You are not allowed to modify remarks field.'
                 )
-        # Call parent's write method (from my_hostel module)
-        result = super(HostelRoom, self).write(values)
-        return result
+        return super(HostelRoom, self).write(values)
 
     @api.model
     def is_allowed_transition(self, old_state, new_state):
