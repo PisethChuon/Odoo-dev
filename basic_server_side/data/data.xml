@@ -17,8 +17,14 @@
         <field name="name">Double Bed</field>
     </record>
 
+    <record id="room_category_all" model="hostel.room.category">
+        <field name="name">All Categories</field>
+    </record>
+
     <!--This block code where to delete records xml id 'room_category_to_remove'-->
     <delete model="hostel.room.category" id="room_category_to_remove"/>
+
+    <function model="hostel.room" name="update_room_price" eval="(ref('room_category_all'), 20)"/>
 
 
 </odoo>
