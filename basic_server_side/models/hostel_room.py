@@ -180,6 +180,12 @@ class HostelRoom(models.Model):
         )
         return grouped_result
 
+    @api.model
+    def update_room_price(self, category, amount_to_increase):
+        _logger.info('Method update_room_price called from XML')
+        category_rooms = self.search([('category_id', '=', category.id)])
+        for room in category_rooms:
+            room.cost_price += amount_to_increase
 
 class HostelRoomNumber(models.Model):
     _name = 'hostel.room.member'
