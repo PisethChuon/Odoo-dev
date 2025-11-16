@@ -29,6 +29,7 @@
                         <field name="room_no"/>
                         <field name="previous_room_id"/>
                         <field name="allocation_date"/>
+                        <field name="cost_price"/>
                     </group>
                     <group>
                         <field name="description"/>
