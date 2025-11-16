@@ -8,11 +8,17 @@
         <field name="country_id" ref="base.uk"/>
     </record>
 
-    <!--Create a New Record in Current Model-->
-<!--    <record id="hostel_room_1" model="hostel.room">-->
-<!--        <field name="name">Hostel Room 01</field>-->
-<!--        <field name="room_no">ROOM-01</field>-->
-<!--        <field name="student_per_room">2</field>-->
-<!--    </record>-->
+    <!--Temp record to delete, in real case this record created from another module-->
+    <record id="room_category_to_remove" model="hostel.room.category">
+        <field name="name">Single Sharing</field>
+    </record>
+
+    <record id="room_category_not_remove" model="hostel.room.category">
+        <field name="name">Double Bed</field>
+    </record>
+
+    <!--This block code where to delete records xml id 'room_category_to_remove'-->
+    <delete model="hostel.room.category" id="room_category_to_remove"/>
+
 
 </odoo>
