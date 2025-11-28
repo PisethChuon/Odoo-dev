@@ -24,7 +24,7 @@
     <!--This block code where to delete records xml id 'room_category_to_remove'-->
     <delete model="hostel.room.category" id="room_category_to_remove"/>
 
-    <function model="hostel.room" name="update_room_price" eval="(ref('room_category_all'), 20)"/>
+<!--    <function model="hostel.room" name="update_room_price" eval="(ref('room_category_all'), 20)"/>-->
 
 
 </odoo>
