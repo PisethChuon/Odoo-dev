@@ -39,3 +39,7 @@ class HostelRoom(models.Model):
         """Constraint on negative rent amount"""
         if self.rent_amount < 0:
             raise ValidationError(_("Rent Amount Per Month should not be a negative value!"))
+
+    def action_remove_room_members(self):
+        for student in self.student_ids:
+            student.with_context(is_hostel_room=True).action_remove_room()
