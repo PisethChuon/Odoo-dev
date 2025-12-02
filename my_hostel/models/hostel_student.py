@@ -42,18 +42,20 @@ class HostelStudent(models.Model):
     duration = fields.Integer("Duration", compute="_compute_check_duration", inverse="_inverse_duration",
                                help="Enter duration of living")
 
-    def action_assign_room(self):
-        self.ensure_one()
-        if self.status != "paid":
-            raise UserError(_("You can't assign a room if it's not paid."))
-        room_as_superuser = self.env['hostel.room'].sudo()
-        room_rec = room_as_superuser.create({
-            "name": "Room A-103",
-            "room_no": "A-103",
-            "floor_no": 1,
-            "room_category_id": self.env.ref("my_hostel.single_room_categ").id,
-            "hostel_id": self.hostel_id.id,
-        })
-        if room_rec:
-            self.room_id = room_rec.id
+    # Method to assign room to student, but didn't react yet in the system
+    # def action_assign_room(self):
+    #     self.ensure_one()
+    #     if self.status != "paid":
+    #         raise UserError(_("You can't assign a room if it's not paid."))
+    #     room_as_superuser = self.env['hostel.room'].sudo()
+    #     room_rec = room_as_superuser.create({
+    #         "name": "Room A-103",
+    #         "room_no": "A-103",
+    #         "floor_no": 1,
+    #         "room_category_id": self.env.ref("my_hostel.single_room_categ").id,
+    #         "hostel_id": self.hostel_id.id,
+    #     })
+    #     if room_rec:
+    #         self.room_id = room_rec.id
+
 
