@@ -18,6 +18,13 @@
             <field name="model">hostel.room</field>
             <field name="arch" type="xml">
                 <form string="Room">
+                    <header>
+                        <button name="action_remove_room_members"
+                            string="Remove Room Members"
+                            type="object"
+                            class="btn-primary"
+                        />
+                    </header>
                     <sheet>
                         <group>
                             <group>
