@@ -9,3 +9,5 @@ access_hostel_student_manager_id,access.hostel.student.manager,my_hostel.model_h
 access_hostel_student_user_id,access.hostel.student.user,my_hostel.model_hostel_student,my_hostel.group_hostel_user,1,0,0,0
 access_hostel_category_manager_id,access.hostel.category.manager,my_hostel.model_hostel_category,my_hostel.group_hostel_manager,1,1,1,1
 access_hostel_category_user_id,access.hostel.category.user,my_hostel.model_hostel_category,my_hostel.group_hostel_user,1,0,0,0
+access_assign_room_student_wizard,access.assign.room.student.wizard,model_assign_room_student_wizard,my_hostel.group_hostel_user,1,0,0,0
+access_assign_room_student_wizard_manager,access.assign.room.student.wizard.manager,model_assign_room_student_wizard,my_hostel.group_hostel_manager,1,1,1,1
