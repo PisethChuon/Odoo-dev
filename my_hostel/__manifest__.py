@@ -13,6 +13,7 @@ Efficiently manage the entire residential facility in the school
     "license": "AGPL-3",
     "depends": ["base"],
     "data": [
+        "wizard/assign_room_student.xml",
         "security/hostel_security.xml",
         "security/ir.model.access.csv",
         "views/hostel.xml",
